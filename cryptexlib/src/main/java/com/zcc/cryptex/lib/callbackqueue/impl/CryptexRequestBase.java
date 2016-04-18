@@ -1,7 +1,7 @@
 package com.zcc.cryptex.lib.callbackqueue.impl;
 
 
-import com.zcc.cryptex.lib.callbackqueue.IRequestLabel;
+import com.zcc.cryptex.lib.net.IRequestLabel;
 import com.zcc.cryptex.lib.net.IRequest;
 
 /**

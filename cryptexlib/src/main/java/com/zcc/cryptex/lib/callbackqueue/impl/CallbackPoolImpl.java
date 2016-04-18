@@ -1,9 +1,8 @@
-package com.zcc.cryptex.lib.callbackqueue.manager;
+package com.zcc.cryptex.lib.callbackqueue.impl;
 
 
 import com.zcc.cryptex.lib.callbackqueue.ICallbackPool;
-import com.zcc.cryptex.lib.callbackqueue.ILabelCallbackFinishListener;
-import com.zcc.cryptex.lib.callbackqueue.IRequestCallback;
+import com.zcc.cryptex.lib.net.IRequestCallback;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,19 +13,18 @@ import java.util.Set;
  */
 public class CallbackPoolImpl implements ICallbackPool {
 
-    private ILabelCallbackFinishListener labelCallbackFinishListener;
     private HashMap<String, ArrayList<IRequestCallback>> callbackArrays = new HashMap<>();
 
 
     @Override
     public void pushCallback(String label, IRequestCallback callback) {
-        if(label == null || callback == null){
+        if (label == null || callback == null) {
             return;
         }
-        ArrayList<IRequestCallback> arrayList  = callbackArrays.get(label);
-        if(arrayList!=null){
+        ArrayList<IRequestCallback> arrayList = callbackArrays.get(label);
+        if (arrayList != null) {
             arrayList.add(callback);
-        }else {
+        } else {
             arrayList = new ArrayList<>();
             arrayList.add(callback);
             callbackArrays.put(label, arrayList);
@@ -40,12 +38,12 @@ public class CallbackPoolImpl implements ICallbackPool {
 
     @Override
     public void excCallback(String label, boolean isSuccess, Object response, int code) {
-        ArrayList<IRequestCallback> arrayList  = callbackArrays.get(label);
-        if(arrayList!=null){
-            for(IRequestCallback callback: arrayList){
-                if(isSuccess){
+        ArrayList<IRequestCallback> arrayList = callbackArrays.get(label);
+        if (arrayList != null) {
+            for (IRequestCallback callback : arrayList) {
+                if (isSuccess) {
                     callback.onSuccess(response);
-                }else {
+                } else {
                     callback.onFailed(code, String.valueOf(response));
                 }
             }

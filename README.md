@@ -1,4 +1,3 @@
 # Cryptex
 A Net Work FrameWork by Zhu Cheng Cheng
-# Caution!!
-## Unfinished  XD
+# Lib finished 2016 04 18

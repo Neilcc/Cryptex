@@ -1,5 +1,7 @@
 package com.zcc.cryptex.lib.callbackqueue;
 
+import com.zcc.cryptex.lib.net.IRequestCallback;
+
 import java.util.Set;
 
 /**
